@@ -1,0 +1,87 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Enola Rowe",
+      "class": "tony@mcu.com",
+      "address": "131 Oswaldo Street",
+      "age": "21"
+    },
+    {
+      "id": 2,
+      "name": "Timmothy Lueilwitz",
+      "age": "15",
+      "address": "37137 Abbigail Lock"
+    },
+    {
+      "id": 3,
+      "name": "Madilyn Pacocha",
+      "age": "14",
+      "address": "094 Morris Plains"
+    },
+    {
+      "id": 4,
+      "name": "Harley Cremin",
+      "age": "17",
+      "address": "14855 Cathy Square"
+    },
+    {
+      "id": 5,
+      "name": "Juana Ziemann",
+      "age": "16",
+      "address": "612 Dayana Stream"
+    },
+    {
+      "name": "ayam",
+      "age": "1sadsad",
+      "id": 6
+    },
+    {
+      "name": "ayam",
+      "age": "12",
+      "id": 7
+    },
+    {
+      "name": "dsfdsf",
+      "age": "11",
+      "id": 8,
+      "address": "fjsdfj"
+    },
+    {
+      "name": "1",
+      "age": "2",
+      "address": "6",
+      "id": 9
+    },
+    {
+      "name": "3",
+      "age": "3",
+      "address": "3",
+      "id": 10
+    },
+    {
+      "name": "2",
+      "age": "3",
+      "address": "3",
+      "id": 11
+    },
+    {
+      "name": "444",
+      "age": "4",
+      "address": "4",
+      "id": 12
+    },
+    {
+      "name": "5",
+      "age": "5",
+      "address": "5",
+      "id": 13
+    },
+    {
+      "name": "5",
+      "age": "5",
+      "address": "5",
+      "id": 14
+    }
+  ]
+}
