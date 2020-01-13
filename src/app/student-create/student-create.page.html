@@ -1,12 +1,14 @@
 <!-- student-create.html -->
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/list"></ion-back-button>
+    </ion-buttons>
     <ion-title>Create Student</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
   <ion-item>
     <ion-label>Name</ion-label>
     <ion-input [(ngModel)]="data.name" placeholder="Enter Name"></ion-input>

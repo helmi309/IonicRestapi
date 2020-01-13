@@ -1,11 +1,13 @@
 <ion-header>
-  <ion-toolbar  color="tertiary">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/list"></ion-back-button>
+    </ion-buttons>
     <ion-title>Edit Student Record</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
   <ion-item>
     <ion-label>Name</ion-label>
     <ion-input [(ngModel)]="data.name" placeholder="Enter Name"></ion-input>
@@ -20,8 +22,5 @@
   </ion-item>
   <ion-button (click)="update()" color="success" size="small">
     Update
-  </ion-button>
-  <ion-button [routerLink]="[ '/list']" color="danger" size="small">
-    Cancel
   </ion-button>
 </ion-content>

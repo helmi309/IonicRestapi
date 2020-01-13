@@ -1,15 +1,18 @@
-<!-- student-list.page.html -->
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar>
     <ion-title>List All Students</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding fullscreen>
+  <ion-button [routerLink]="['/create']">
+    Add Student
+  </ion-button>
+  <ion-list id="data">
   <table class="table">
     <thead>
     <tr>
-      <th scope="col">Id</th>
+      <th scope="col">No</th>
       <th scope="col">Name</th>
       <th scope="col">Age</th>
       <th scope="col">Address</th>
@@ -17,9 +20,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of studentsData">
-      <td>{{ item.id }}</td>
-      <td>{{ item.name }}</td>
+    <tr *ngFor="let item of pagedItems; let i= index" id="list">
+
+      <td>{{ i+1 }}</td>
+      <td>{{ item.name }} </td>
       <td>{{ item.age }}</td>
       <td>{{ item.address }}</td>
       <td style="display: flex">
@@ -31,9 +35,209 @@
         </ion-button>
       </td>
     </tr>
+    <ion-infinite-scroll threshold="100px" id="infinite-scroll">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
     </tbody>
   </table>
-  <ion-button [routerLink]="['/create']">
-    Add Student
-  </ion-button>
+
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+      </li>
+      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+      </li>
+    </ul>
+  </ion-list>
+  <ion-list id="skeleton">
+    <ion-list-header>
+      <ion-skeleton-text animated style="width: 80px"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
+<script>
+  let length = 0;
+  const list = document.getElementById('list');
+  const infiniteScroll = document.getElementById('infinite-scroll');
+
+  infiniteScroll.addEventListener('ionInfinite', async function () {
+    if (length < this.studentsData.length) {
+      console.log('Loading data...');
+      await wait(500);
+      infiniteScroll.complete();
+      appendItems(10);
+      console.log('Done');
+    } else {
+      console.log('No More Data');
+      infiniteScroll.disabled = true;
+    }
+  });
+  function appendItems(number) {
+    console.log('length is', length);
+    const originalLength = length;
+    for (var i = 0; i < number; i++) {
+      const el = document.createElement('ion-item');
+      el.innerHTML = `
+          <ion-avatar slot="start">
+            <img src="https://www.gravatar.com/avatar/${i + originalLength}?d=monsterid&f=y">
+          </ion-avatar>
+          <ion-label>
+            <h2>${users[i + originalLength].name}</h2>
+            <p>Created ${users[i + originalLength].created}</p>
+          </ion-label>
+        `;
+      list.appendChild(el);
+      length++;
+    }
+  }
+
+  function wait(time) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, time);
+    });
+  }
+
+  appendItems(20);
+</script>
