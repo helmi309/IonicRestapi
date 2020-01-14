@@ -8,6 +8,7 @@
   <ion-button [routerLink]="['/create']">
     Add Student
   </ion-button>
+
   <ion-list id="data">
   <table class="table">
     <thead>
@@ -20,7 +21,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of pagedItems; let i= index" id="list">
+    <tr *ngFor="let item of pagedItems; let i= index">
 
       <td>{{ i+1 }}</td>
       <td>{{ item.name }} </td>
@@ -35,30 +36,13 @@
         </ion-button>
       </td>
     </tr>
-    <ion-infinite-scroll threshold="100px" id="infinite-scroll">
-      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+    </tbody>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+              loadingSpinner="bubbles"
+              loadingText="Loading more data...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
-    </tbody>
-  </table>
-
-    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(1)">First</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-      </li>
-      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a (click)="setPage(page)">{{page}}</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.currentPage + 1)">Next</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.totalPages)">Last</a>
-      </li>
-    </ul>
   </ion-list>
   <ion-list id="skeleton">
     <ion-list-header>
@@ -195,49 +179,3 @@
 
   </ion-list>
 </ion-content>
-<script>
-  let length = 0;
-  const list = document.getElementById('list');
-  const infiniteScroll = document.getElementById('infinite-scroll');
-
-  infiniteScroll.addEventListener('ionInfinite', async function () {
-    if (length < this.studentsData.length) {
-      console.log('Loading data...');
-      await wait(500);
-      infiniteScroll.complete();
-      appendItems(10);
-      console.log('Done');
-    } else {
-      console.log('No More Data');
-      infiniteScroll.disabled = true;
-    }
-  });
-  function appendItems(number) {
-    console.log('length is', length);
-    const originalLength = length;
-    for (var i = 0; i < number; i++) {
-      const el = document.createElement('ion-item');
-      el.innerHTML = `
-          <ion-avatar slot="start">
-            <img src="https://www.gravatar.com/avatar/${i + originalLength}?d=monsterid&f=y">
-          </ion-avatar>
-          <ion-label>
-            <h2>${users[i + originalLength].name}</h2>
-            <p>Created ${users[i + originalLength].created}</p>
-          </ion-label>
-        `;
-      list.appendChild(el);
-      length++;
-    }
-  }
-
-  function wait(time) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-      }, time);
-    });
-  }
-
-  appendItems(20);
-</script>

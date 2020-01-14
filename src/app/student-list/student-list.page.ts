@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import {LoadingController, AlertController, ToastController} from '@ionic/angular';
-
+import {LoadingController, AlertController, ToastController, IonInfiniteScroll} from '@ionic/angular';
 
 @Component({
   selector: 'app-student-list',
@@ -11,7 +10,7 @@ import {LoadingController, AlertController, ToastController} from '@ionic/angula
 export class StudentListPage implements OnInit {
 
   studentsData: any;
-
+  infiniteScroll: IonInfiniteScroll;
   constructor(
       public apiService: ApiService,
       public alertController: AlertController,
@@ -21,9 +20,15 @@ export class StudentListPage implements OnInit {
   }
   pager: any = {};
   pagedItems: any[];
+  pagedItemsinfinite: any[];
+  Pagenumber: number;
+  nomer: number;
+  count: number;
+
   ngOnInit() {
   }
   ionViewWillEnter() {
+    this.nomer = 25;
     this.getAllStudents();
   }
 
@@ -75,12 +80,26 @@ export class StudentListPage implements OnInit {
       this.presentConfirm(item);
   }
   setPage(page: number) {
+    this.Pagenumber = page;
     // get pager object from service
     this.pager = this.getPager(this.studentsData.length, page);
     // get current page of items
     this.pagedItems = this.studentsData.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
-  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 20) {
+  setPageInfinite(page: number) {
+    this.Pagenumber = page;
+    // get pager object from service
+    this.pager = this.getPager(this.studentsData.length, page);
+    // get current page of items
+    this.pagedItemsinfinite = this.studentsData.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    const list = document.getElementById('list');
+    this.count = 0
+    for (let item of this.pagedItemsinfinite) {
+      this.pagedItems.push(this.pagedItemsinfinite[this.count]);
+      this.count++;
+    }
+  }
+  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 25) {
     // calculate total pages
     let totalPages = Math.ceil(totalItems / pageSize);
 
@@ -129,5 +148,22 @@ export class StudentListPage implements OnInit {
       endIndex: endIndex,
       pages: pages
     };
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      this.setPageInfinite(this.Pagenumber+1)
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (this.studentsData.length == 1000) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 }
