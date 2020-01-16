@@ -47,7 +47,7 @@ export class ApiService {
         .pipe(
             retry(2),
             catchError(this.handleError)
-        )
+        );
   }
 
   // Get single student data by ID
@@ -57,7 +57,7 @@ export class ApiService {
         .pipe(
             retry(2),
             catchError(this.handleError)
-        )
+        );
   }
 
   // Get students data
@@ -67,7 +67,7 @@ export class ApiService {
         .pipe(
             retry(2),
             catchError(this.handleError)
-        )
+        );
   }
 
   // Update item by id

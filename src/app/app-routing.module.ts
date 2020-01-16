@@ -7,7 +7,11 @@ const routes: Routes = [
   { path: 'create', loadChildren: () => import('./student-create/student-create.module').then(m => m.StudentCreatePageModule) },
   { path: 'edit/:id', loadChildren: () => import('./student-edit/student-edit.module').then(m => m.StudentEditPageModule) },
   { path: 'list', loadChildren: () => import('./student-list/student-list.module').then(m => m.StudentListPageModule) },
-  { path: 'detail', loadChildren: () => import('./student-detail/student-detail.module').then(m => m.StudentDetailPageModule) },
+  { path: 'detail', loadChildren: () => import('./student-detail/student-detail.module').then(m => m.StudentDetailPageModule) },  {
+    path: 'guru-create',
+    loadChildren: () => import('./guru-create/guru-create.module').then( m => m.GuruCreatePageModule)
+  },
+
 ];
 
 @NgModule({

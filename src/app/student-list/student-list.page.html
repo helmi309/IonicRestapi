@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>List All Students</ion-title>
+    <ion-buttons slot="start" color="primary">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      List Student All
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding fullscreen>
-  <ion-button [routerLink]="['/create']">
-    Add Student
-  </ion-button>
-
   <ion-list id="data">
   <table class="table">
     <thead>
@@ -43,6 +43,7 @@
               loadingText="Loading more data...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
+  </table>
   </ion-list>
   <ion-list id="skeleton">
     <ion-list-header>
@@ -179,3 +180,4 @@
 
   </ion-list>
 </ion-content>
+

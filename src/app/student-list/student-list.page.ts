@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import {LoadingController, AlertController, ToastController, IonInfiniteScroll} from '@ionic/angular';
+import { AlertController, ToastController, IonInfiniteScroll} from '@ionic/angular';
 
 @Component({
   selector: 'app-student-list',
@@ -24,7 +24,6 @@ export class StudentListPage implements OnInit {
   Pagenumber: number;
   nomer: number;
   count: number;
-
   ngOnInit() {
   }
   ionViewWillEnter() {
@@ -38,7 +37,6 @@ export class StudentListPage implements OnInit {
     this.apiService.getList().subscribe(response => {
       this.studentsData = response;
       this.setPage(1);
-      // console.log(response)
       document.getElementById('skeleton').style.display = 'none';
       document.getElementById('data').style.display = 'block';
     });
@@ -152,7 +150,6 @@ export class StudentListPage implements OnInit {
 
   loadData(event) {
     setTimeout(() => {
-      console.log('Done');
       event.target.complete();
       this.setPageInfinite(this.Pagenumber+1)
       // App logic to determine if all data is loaded

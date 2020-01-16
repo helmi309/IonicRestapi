@@ -11,16 +11,16 @@
 <ion-content padding>
   <ion-item>
     <ion-label>Name</ion-label>
-    <ion-input [(ngModel)]="data.name" placeholder="Enter Name"></ion-input>
+    <ion-input [(ngModel)]="data.name" required placeholder="Enter Name"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Age</ion-label>
-    <ion-input [(ngModel)]="data.age" placeholder="Enter Age"></ion-input>
+    <ion-input [(ngModel)]="data.age" required placeholder="Enter Age" type="number"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Address</ion-label>
-    <ion-input [(ngModel)]="data.address" placeholder="Enter Address"></ion-input>
+    <ion-input [(ngModel)]="data.address" required placeholder="Enter Address"></ion-input>
   </ion-item>
 
   <ion-item>
