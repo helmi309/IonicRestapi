@@ -11,7 +11,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'http://localhost:3000/students';
+  base_path = 'https://joven-1.cubbex.com/data-json-online/students';
 
   constructor(private http: HttpClient) { }
 
